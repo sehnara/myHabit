@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import './app.css';
 import Habit from './components/habit';
 import Habits from './components/habits';
+import NavBar from './components/navBar';
 
 class App extends Component {  
   state={
     habits:[
-      {id : 1, name:'Reading', count : '7'},
-      {id : 2, name:'Running', count : '3'},
-      {id : 3, name:'Sleeping', count : '2'}
-    ]
+      {id : 1, name:'Reading', count : '0'},
+      {id : 2, name:'Running', count : '0'},
+      {id : 3, name:'Sleeping', count : '0'}
+    ],
+    totalCount : 0
   }
 
   handleIncrease = (habit) =>{
@@ -37,12 +39,17 @@ class App extends Component {
   }
   render(){
     return (
-      <Habits        
-        habits = {this.state.habits}  
-        onIncrease = {this.handleIncrease}
-        onDecrease = {this.handleDecrease}
-        onDelete = {this.handleDelete}
-      />
+      <>
+        <NavBar 
+          totalCount = {this.state.habits.filter(habit=>habit.count>0).length}
+        />
+        <Habits        
+          habits = {this.state.habits}  
+          onIncrease = {this.handleIncrease}
+          onDecrease = {this.handleDecrease}
+          onDelete = {this.handleDelete}
+        />
+      </>
     );
   };
   
