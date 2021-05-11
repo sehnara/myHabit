@@ -95,7 +95,7 @@ button {
   transition: transform 0.5s ease-in-out;
 }
 
-.resetBtn {
+.reset-button {
   width: 7rem;
   height: 2rem;
   line-height: 2rem;
@@ -111,7 +111,7 @@ button {
   transition: transform 0.5s ease-in-out;
 }
 
-.resetBtn:hover,
-.addBtn:hover {
+.reset-button:hover,
+.add-button:hover {
   opacity: 0.8;
 }

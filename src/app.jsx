@@ -8,9 +8,9 @@ import NavBar from './components/navBar';
 class App extends Component {  
   state={
     habits:[
-      {id : 1, name:'Reading', count : '0'},
-      {id : 2, name:'Running', count : '0'},
-      {id : 3, name:'Sleeping', count : '0'}
+      {id : 1, name:'Reading', count : 0},
+      {id : 2, name:'Running', count : 0},
+      {id : 3, name:'Sleeping', count : 0}
     ],
     totalCount : 0
   }
@@ -46,6 +46,15 @@ class App extends Component {
     habits.push(habitObj);
     this.setState({habits});
   }
+
+  handleReset = () =>{
+    const habits = [...this.state.habits];
+    const newHabits = habits.map(habit=>{
+      habit.count = 0;
+      return habit;
+    });
+    this.setState({habits:newHabits});
+  }
   
   render(){
     return (
@@ -61,12 +70,10 @@ class App extends Component {
           onIncrease = {this.handleIncrease}
           onDecrease = {this.handleDecrease}
           onDelete = {this.handleDelete}          
-        />
-        
+        />        
+        <button className="reset-button" onClick={this.handleReset}>reset All</button>
       </>
     );
-  };
-  
+  };  
 }
-
 export default App;
