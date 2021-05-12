@@ -74,8 +74,8 @@ class App extends Component {
   render(){
     return (
       <>
-        <Simplehabit/>
-        {/* <NavBar 
+        {/* <Simplehabit/> */}
+        <NavBar 
           totalCount = {this.state.habits.filter(habit=>habit.count>0).length}
         />
         <InputHabit 
@@ -87,7 +87,7 @@ class App extends Component {
           onDecrease = {this.handleDecrease}
           onDelete = {this.handleDelete}          
         />        
-        <button className="reset-button" onClick={this.handleReset}>reset All</button> */}
+        <button className="reset-button" onClick={this.handleReset}>reset All</button>
       </>
     );
   };  
