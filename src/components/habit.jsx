@@ -1,6 +1,15 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class Habit extends Component {  
+class Habit extends PureComponent {  
+
+    componentDidMount(){ // UI 상에 등록이 될 때, ex) 로딩 스피너 같은 거 할 때
+        console.log(`habit : ${this.props.habit.name} muonted!!`);
+    }
+    componentWillUnmount(){ // 지우기 전에 발동
+        console.log(`habit : ${this.props.habit.name} will be unmuonted!!`);
+    }
+
+    
 
     handleIncrease = () =>{
         this.props.onIncrease(this.props.habit);
@@ -16,7 +25,9 @@ class Habit extends Component {
 
 
     render() {
-        const {name,count} = this.props.habit;
+        
+        const {name, count} = this.props.habit;        
+        console.log({name});
 
         return (
             <li className='habit'>
@@ -26,7 +37,7 @@ class Habit extends Component {
                 <button className="habit-button habit-decrease" onClick={this.handleDecrease}><i className="fas fa-minus-square"></i></button>
                 <button className="habit-button habit-delete" onClick={this.handleDelete}><i className="fas fa-trash"></i></button>
             </li>
-        );
+        );  
     }
 }
 

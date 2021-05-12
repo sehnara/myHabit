@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import Habit from './habit';
 
 class  Habits extends Component {
-    
+    componentDidUpdate(){
+        //
+    }
     handleIncrease = (habit) =>{
         this.props.onIncrease(habit);
     }
@@ -25,6 +27,7 @@ class  Habits extends Component {
                         <Habit 
                             key = {habit.id}
                             habit={habit}
+                            // count={habit.count}
                             onIncrease = {this.handleIncrease}
                             onDecrease = {this.handleDecrease}
                             onDelete = {this.handleDelete}

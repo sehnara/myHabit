@@ -4,6 +4,7 @@ import Habit from './components/habit';
 import Habits from './components/habits';
 import InputHabit from './components/inputHabit';
 import NavBar from './components/navBar';
+import Simplehabit from './components/simplehabit';
 
 class App extends Component {  
   state={
@@ -15,17 +16,23 @@ class App extends Component {
     totalCount : 0
   }
 
-  handleIncrease = (habit) =>{
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
+  handleIncrease = habit =>{
+    const habits = this.state.habits.map(item=>{
+      if(item.id===habit.id){
+        return {...habit, count:habit.count+1}; // deconstructing object
+      }
+      return item;
+    }); 
     this.setState({habits});
   }
 
   handleDecrease = (habit) =>{
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count = habits[index].count-1 <0 ? 0 : habits[index].count-1;
+    const habits = this.state.habits.map(item=>{
+      if(item.id===habit.id){
+        return {...habit, count:habit.count-1 < 0? 0 : habit.count-1}; 
+      }
+      return item;
+    });
     this.setState({habits});
   }
 
@@ -48,18 +55,27 @@ class App extends Component {
   }
 
   handleReset = () =>{
-    const habits = [...this.state.habits];
-    const newHabits = habits.map(habit=>{
-      habit.count = 0;
+    const habits = this.state.habits.map(habit=>{
+      if(habit.count>0){
+        return {...habit, count:0};
+      }
       return habit;
     });
-    this.setState({habits:newHabits});
+    this.setState({habits});
+
+    // const habits = [...this.state.habits];
+    // const newHabits = habits.map(habit=>{
+    //   habit.count = 0;
+    //   return habit;
+    // });
+    // this.setState({habits:newHabits});
   }
   
   render(){
     return (
       <>
-        <NavBar 
+        <Simplehabit/>
+        {/* <NavBar 
           totalCount = {this.state.habits.filter(habit=>habit.count>0).length}
         />
         <InputHabit 
@@ -71,7 +87,7 @@ class App extends Component {
           onDecrease = {this.handleDecrease}
           onDelete = {this.handleDelete}          
         />        
-        <button className="reset-button" onClick={this.handleReset}>reset All</button>
+        <button className="reset-button" onClick={this.handleReset}>reset All</button> */}
       </>
     );
   };  
